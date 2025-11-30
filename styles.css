@@ -1,0 +1,275 @@
+/* Light appetizing theme with warm brownish accents */
+:root {
+  --bg: #fdf6e3;        /* warm parchment background */
+  --surface: #fff8ec;   /* light cream */
+  --surface-alt: #f2e6d4; /* slightly darker for contrast areas */
+  --text: #3b2f2f;      /* dark brown text */
+  --accent: #965c4a;    /* rustic terracotta */
+  --accent-soft: #d19c67; /* caramel highlight */
+  --accent-warm: #6f4e37; /* coffee brown */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* HEADER + NAV */
+header {
+  background-color: var(--surface-alt);
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  border-bottom: 2px solid var(--accent-soft);
+}
+
+.banner img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--accent-warm);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  background-color: var(--surface);
+  transition: all 0.3s;
+}
+
+nav a:hover, nav a.active {
+  background-color: var(--accent);
+  color: #fff8ec;
+}
+
+/* MAIN */
+main {
+  padding: 2rem;
+  text-align: center;
+}
+
+h1, h2 {
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+/* IMAGE GRID PLACEHOLDERS */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.image-placeholder {
+  background-color: var(--surface-alt);
+  color: var(--accent-warm);
+  padding: 2rem;
+  border-radius: 8px;
+  border: 2px dashed var(--accent-soft);
+  font-style: italic;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* FORMS */
+.form-container {
+  max-width: 700px;        /* ⬅ INCREASED (change to 800px if you want even wider) */
+  width: 90%;              /* full-width on mobile */
+  margin: 3rem auto;
+  background-color: var(--surface);
+  padding: 2.5rem;         /* slightly more spacing */
+  border-radius: 14px;     /* smoother rounded edges */
+  border: 1px solid var(--accent-soft);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  text-align: left;        /* ⬅ Align labels & fields nicely */
+}
+
+form label {
+  display: block;
+  text-align: left;
+  margin: 1rem 0 0.5rem;
+  color: var(--accent-warm);
+  font-weight: bold;
+}
+
+form input {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 6px;
+  border: 1px solid var(--accent-soft);
+  background-color: #fff;
+  color: var(--text);
+  margin-bottom: 1rem;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+form input:focus {
+  border: 1px solid var(--accent);
+  box-shadow: 0 0 4px var(--accent-soft);
+  outline: none;
+}
+
+form button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: var(--accent);
+  border: none;
+  border-radius: 6px;
+  color: #fff8ec;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+form button:hover {
+  background-color: var(--accent-soft);
+  color: #3b2f2f;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+  border-top: 2px solid var(--accent-soft);
+  color: var(--accent-warm);
+  background-color: var(--surface-alt);
+}
+
+/* Phone number field (country code + number side by side) */
+.phone-field {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.phone-field select {
+  flex: 0 0 80px;     /* lock width */
+  width: 80px;
+  padding: 0.7rem;
+  border-radius: 6px;
+  border: 1px solid var(--accent-soft);
+  background-color: #fff;
+  color: var(--text);
+  font-size: 0.9rem;
+  height: 45px;
+  box-sizing: border-box;
+  text-align: center;
+
+  /* Hide overflowed text so only flag + code show */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.phone-field input[type="tel"] {
+  flex: 1;           /* take up remaining space */
+  padding: 0.7rem;
+  border-radius: 6px;
+  border: 1px solid var(--accent-soft);
+  font-size: 1rem;
+  height: 45px;
+  box-sizing: border-box;
+}
+
+form input,
+form select {
+  padding: 0.7rem;
+  border-radius: 6px;
+  border: 1px solid var(--accent-soft);
+  background-color: #fff;
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.5;
+  height: 45px; /* force consistent height */
+  box-sizing: border-box;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.image-grid div {
+  text-align: center;
+  background: var(--accent-soft);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.image-grid div:hover {
+  transform: scale(1.05);
+}
+
+.image-grid img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.image-grid div {
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 10px;
+  color: #333;
+}
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown button */
+.dropbtn {
+  cursor: pointer;
+}
+
+/* Dropdown content */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 150px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.dropdown-content a {
+  color: var(--accent-warm);
+  padding: 10px 15px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: var(--accent);
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}

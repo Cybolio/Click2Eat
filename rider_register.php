@@ -50,7 +50,7 @@ if(isset($_POST['btnRegister'])){
   <header>
     <nav>
       <ul>
-        <li><a href="rider_login.php">Login as a Rider</a></li>
+        <li><a href="login.php">Login as a Rider</a></li>
         <li><a href="register.php" class="active">Register as a customer</a></li>
       </ul>
     </nav>
@@ -112,7 +112,7 @@ if(isset($_POST['btnRegister'])){
 
       <!-- Register -->
       <button type="submit" name="btnRegister">Register As Rider</button>
-      <p>Already have a rider account? <a href="rider_login.php">Login here</a></p>
+      <p>Already have a rider account? <a href="login.php">Login here</a></p>
     </form>
   </main>
 </body>

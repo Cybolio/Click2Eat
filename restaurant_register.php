@@ -48,7 +48,7 @@ if(isset($_POST['btnRegister'])){
   <header>
     <nav>
       <ul>
-        <li><a href="restaurant_login.php">Login as Restaurant</a></li>
+        <li><a href="login.php">Login as Restaurant</a></li>
         <li><a href="customer_register.php" class="active">Register as a customer</a></li>
       </ul>
     </nav>
@@ -101,7 +101,7 @@ if(isset($_POST['btnRegister'])){
 
       <!-- Register -->
       <button type="submit" name="btnRegister">Register Branch</button>
-      <p>Already have a business account? <a href="restaurant_login.php">Login here</a></p>
+      <p>Already have a business account? <a href="login.php">Login here</a></p>
     </form>
   </main>
 </body>

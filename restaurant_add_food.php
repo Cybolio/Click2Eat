@@ -1,29 +1,25 @@
 <?php
+$conn = mysqli_connect("localhost","root","","click2eat");
 session_start();
-if (!isset($_SESSION['restaurantID'])) {
-    header("Location: restaurant_login.php");
+if (!isset($_SESSION['branch_id'])) {
+    header("Location: login.php");
     exit();
 }
-?>
-
-<?php
-$conn = mysqli_connect("localhost","root","","click2eat");
-
 if (isset($_POST['submit_item'])) {
 
     $foodname = $_POST['food_name'];
     $desc = $_POST['description'];
     $price = $_POST['price'];
     $categ = $_POST['category'];
+    $branch_id = $_SESSION['branch_id'];
 
-    $sqlSelect = "SELECT * FROM menu WHERE name = '$foodname'";
+    $sqlSelect = "SELECT * FROM menu WHERE name = '$foodname' and `branch-ID` = '$branch_id' ";
     $result = mysqli_query($conn, $sqlSelect);
 
-    if (mysqli_num_rows($result) == 0 ) {
+    if (mysqli_num_rows($result) == 0) {
         
-        $branchID = 1; 
         $sqlMenu = "INSERT INTO menu(name, `branch-ID`, description, price, category) 
-            VALUES ('$foodname', '$branchID', '$desc', '$price', '$categ')";
+            VALUES ('$foodname', '$branch_id', '$desc', '$price', '$categ')";
         
         if (mysqli_query($conn, $sqlMenu)) {
              echo "<script>alert('Menu item added successfully');</script>";
@@ -51,7 +47,7 @@ if (isset($_POST['submit_item'])) {
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="restaurant_view.html">Back to Menu</a></li>
+        <li><a href="restaurant_view.php">Back to Menu</a></li>
         <li><a href="login.html">Login</a></li>
       </ul>
     </nav>

@@ -1,9 +1,10 @@
 <?php
+session_start();
 $conn = mysqli_connect("localhost", "root", "", "click2eat");
 if (isset($_POST['btnLogin'])) {
 
-    $username = mysqli_real_escape_string($conn, $_POST['usernametxt']);
-    $password = mysqli_real_escape_string($conn, $_POST['passwordtxt']);
+    $username = $_POST['usernametxt'];
+    $password = $_POST['passwordtxt'];
 
     $sql_customer   = "SELECT * FROM customer   WHERE (Email='$username' OR username='$username') AND password='$password' LIMIT 1";
     $sql_restaurant = "SELECT * FROM restaurant WHERE Email='$username' AND password='$password' LIMIT 1";
@@ -14,17 +15,27 @@ if (isset($_POST['btnLogin'])) {
     $result3 = mysqli_query($conn, $sql_rider);
 
     if (mysqli_num_rows($result1) == 1) {
-        header("Location: home.php"); 
+        $row = mysqli_fetch_assoc($result1);
+        $_SESSION['customer_id'] = $row['CustomerID'];   // adjust name to match your table
+        $_SESSION['customer_username'] = $row['username'];
+        header("Location: home.php");
         exit();
-    } 
+    }
+    // Restaurant
     else if (mysqli_num_rows($result2) == 1) {
+        $row = mysqli_fetch_assoc($result2);
+        $_SESSION['branch_id'] = $row['branchID'];  // adjust to your actual column name
         header("Location: restaurant_view.php");
         exit();
-    } 
+    }
+    // Rider
     else if (mysqli_num_rows($result3) == 1) {
+        $row = mysqli_fetch_assoc($result3);
+        $_SESSION['rider_id'] = $row['RiderID'];  // adjust to your actual column name
         header("Location: riderview.php");
         exit();
-    } 
+    }
+    // Not found
     else {
         echo "<script>alert('Invalid credentials.');</script>";
     }

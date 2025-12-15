@@ -16,7 +16,7 @@ if (isset($_POST['btnLogin'])) {
 
     if (mysqli_num_rows($result1) == 1) {
         $row = mysqli_fetch_assoc($result1);
-        $_SESSION['customer_id'] = $row['CustomerID'];   // adjust name to match your table
+        $_SESSION['customer_id'] = $row['CustomerID'];  
         $_SESSION['customer_username'] = $row['username'];
         header("Location: home.php");
         exit();
@@ -24,22 +24,23 @@ if (isset($_POST['btnLogin'])) {
     // Restaurant
     else if (mysqli_num_rows($result2) == 1) {
         $row = mysqli_fetch_assoc($result2);
-        $_SESSION['branch_id'] = $row['branchID'];  // adjust to your actual column name
+        $_SESSION['branch_id'] = $row['branchID']; 
         header("Location: restaurant_view.php");
         exit();
     }
     // Rider
     else if (mysqli_num_rows($result3) == 1) {
-        $row = mysqli_fetch_assoc($result3);
-        $_SESSION['rider_id'] = $row['RiderID'];  // adjust to your actual column name
-        header("Location: riderview.php");
-        exit();
+      $row = mysqli_fetch_assoc($result3);
+      $_SESSION['rider_id'] = $row['rider-id'];  
+      header("Location: riderview.php");   
+      exit();
     }
     // Not found
     else {
         echo "<script>alert('Invalid credentials.');</script>";
     }
 }
+mysqli_close($conn);
 ?>
 
 

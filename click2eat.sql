@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 15, 2025 at 03:37 AM
+-- Host: localhost
+-- Generation Time: Dec 15, 2025 at 04:22 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,7 +43,8 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`CustomerID`, `username`, `fullname`, `email`, `password`, `phone_no`, `home_address`, `work_address`) VALUES
-(1, 'bamesj', 'Bames Jond', 'bamesjond@gmail.com', '123', '555666888', 'Cebu City', 'Minglanilla');
+(1, 'bamesj', 'Bames Jond', 'bamesjond@gmail.com', '123', '555666888', 'Cebu City', 'Minglanilla'),
+(3, 'ivan', 'ivan', 'ivan@gmail.com', '123', '123', 'Cebu City', '');
 
 -- --------------------------------------------------------
 
@@ -84,9 +85,7 @@ CREATE TABLE `menu` (
 
 INSERT INTO `menu` (`FoodID`, `branch-ID`, `name`, `description`, `Price`, `Category`, `Availability`, `item_image`) VALUES
 (1, 1, 'Jolly Spaghetti', 'Disgusting', 150.00, 'Main Course', 1, NULL),
-(2, 1, 'Yum Burger', 'Extra Yummy', 50.00, 'Main Course', 1, NULL),
-(3, 1, '1 pc Chicken Joy', 'Chicken Joy w/ Rice', 59.00, 'Main Course', 1, NULL),
-(4, 1, 'Jolly Hotdog', 'Jolly Glizzy', 90.00, 'Snacks', 1, NULL);
+(2, 1, 'Yum Burger', 'Extra Yummy', 50.00, 'Main Course', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -111,9 +110,10 @@ CREATE TABLE `orderprocess` (
 INSERT INTO `orderprocess` (`OrderID`, `BranchID`, `RiderID`, `CustomerID`, `OrderStatus`, `Total Amount`, `OrderDate`) VALUES
 (38, 1, 1, 1, 1, 709, '2025-12-15 09:23:59'),
 (42, 1, NULL, 1, 1, 380, '2025-12-15 09:42:46'),
-(43, 1, NULL, 1, 1, 380, '2025-12-15 09:43:17'),
-(44, 1, 1, 1, 1, 380, '2025-12-15 09:43:31'),
-(45, 1, 1, 1, 3, 380, '2025-12-15 09:43:42');
+(43, 1, 1, 1, 1, 380, '2025-12-15 09:43:17'),
+(44, 1, 1, 1, 3, 380, '2025-12-15 09:43:31'),
+(45, 1, 1, 1, 3, 380, '2025-12-15 09:43:42'),
+(46, 1, NULL, 1, 1, 227, '2025-12-15 13:27:55');
 
 -- --------------------------------------------------------
 
@@ -134,17 +134,13 @@ CREATE TABLE `order_food_items` (
 --
 
 INSERT INTO `order_food_items` (`OrderFoodItemID`, `OrderID`, `FoodID`, `Quantity`, `PriceAtOrder`) VALUES
-(3, 38, 3, 1, 59.00),
 (4, 38, 1, 4, 150.00),
 (5, 38, 2, 1, 50.00),
-(6, 42, 4, 2, 90.00),
 (7, 42, 2, 4, 50.00),
-(8, 43, 4, 2, 90.00),
 (9, 43, 2, 4, 50.00),
-(10, 44, 4, 2, 90.00),
 (11, 44, 2, 4, 50.00),
-(12, 45, 4, 2, 90.00),
-(13, 45, 2, 4, 50.00);
+(13, 45, 2, 4, 50.00),
+(15, 46, 2, 1, 50.00);
 
 -- --------------------------------------------------------
 
@@ -171,7 +167,8 @@ INSERT INTO `paymentrecord` (`PaymentID`, `OrderID`, `DeliveryID`, `PaymentDate`
 (2, 42, NULL, '2025-12-15 09:42:46', 380, 1, 1),
 (3, 43, NULL, '2025-12-15 09:43:17', 380, 1, 1),
 (4, 44, NULL, '2025-12-15 09:43:31', 380, 1, 1),
-(5, 45, NULL, '2025-12-15 09:43:42', 380, 1, 1);
+(5, 45, NULL, '2025-12-15 09:43:42', 380, 1, 1),
+(6, 46, NULL, '2025-12-15 13:27:55', 227, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -184,10 +181,9 @@ CREATE TABLE `restaurant` (
   `branchaddress` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
   `restaurantname` varchar(50) NOT NULL,
-  `contact-num` varchar(15) NOT NULL,
+  `contactnum` varchar(15) NOT NULL,
   `manager` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `logo_image` varchar(255) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -195,8 +191,9 @@ CREATE TABLE `restaurant` (
 -- Dumping data for table `restaurant`
 --
 
-INSERT INTO `restaurant` (`branchID`, `branchaddress`, `email`, `restaurantname`, `contact-num`, `manager`, `password`, `logo_image`, `status`) VALUES
-(1, 'Cebu City', 'mickd@gmail.com', 'Jolibee', '11223344', 'Scrooge McDuck', '123', NULL, 1);
+INSERT INTO `restaurant` (`branchID`, `branchaddress`, `email`, `restaurantname`, `contactnum`, `manager`, `password`, `status`) VALUES
+(1, 'Cebu City', 'mickd@gmail.com', 'Jolibee', '11223344', 'Scrooge McDuck', '123', 1),
+(10, 'Cebu', 'Ivan@gmail.com', 'Ivan', '92013', 'Ivan', '123', 0);
 
 -- --------------------------------------------------------
 
@@ -223,7 +220,8 @@ CREATE TABLE `rider` (
 --
 
 INSERT INTO `rider` (`rider-id`, `LicenseNo.`, `fullname`, `Email`, `phone-no`, `vehicle-type`, `address`, `platenum`, `password`, `profile_image`, `status`) VALUES
-(1, 'A00-000-0000', 'Christine Codilla', 'tintin@gmail.com', '112233445566', 'Blue 2010, Yamaha V Star 950 Tourer ', 'Cebu City', 'CCA112', '123', NULL, 1);
+(1, 'A00-000-0000', 'Christine Codilla', 'tintin@gmail.com', '112233445566', 'Blue 2010, Yamaha V Star 950 Tourer ', 'Cebu City', 'CCA112', '123', NULL, 1),
+(2, 'A00-00-0000', 'John Cena', 'JC@gmail.com', '11223344', 'Toyota Corolla', 'Cebu CIty', 'GCC123', '1234', NULL, 0);
 
 --
 -- Indexes for dumped tables
@@ -297,7 +295,7 @@ ALTER TABLE `rider`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `CustomerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `CustomerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `delivery`
@@ -315,31 +313,31 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `orderprocess`
 --
 ALTER TABLE `orderprocess`
-  MODIFY `OrderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `OrderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `order_food_items`
 --
 ALTER TABLE `order_food_items`
-  MODIFY `OrderFoodItemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `OrderFoodItemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `paymentrecord`
 --
 ALTER TABLE `paymentrecord`
-  MODIFY `PaymentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `PaymentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `restaurant`
 --
 ALTER TABLE `restaurant`
-  MODIFY `branchID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `branchID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `rider`
 --
 ALTER TABLE `rider`
-  MODIFY `rider-id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `rider-id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -370,7 +368,7 @@ ALTER TABLE `orderprocess`
 -- Constraints for table `order_food_items`
 --
 ALTER TABLE `order_food_items`
-  ADD CONSTRAINT `ofi_ibfk_food` FOREIGN KEY (`FoodID`) REFERENCES `menu` (`FoodID`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `ofi_ibfk_food` FOREIGN KEY (`FoodID`) REFERENCES `menu` (`FoodID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ofi_ibfk_order` FOREIGN KEY (`OrderID`) REFERENCES `orderprocess` (`OrderID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

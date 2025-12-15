@@ -51,7 +51,7 @@ if(isset($_POST['btnRegister'])){
     <nav>
       <ul>
         <li><a href="login.php">Login as a Rider</a></li>
-        <li><a href="register.php" class="active">Register as a customer</a></li>
+        <li><a href="customer_register.php" class="active">Register as a customer</a></li>
       </ul>
     </nav>
   </header>

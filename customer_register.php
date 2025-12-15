@@ -56,7 +56,7 @@ if(isset($_POST['btnRegister'])){
            <a href="restaurant_register.php">Restaurant</a>
          </div>
         </li>
-        <li><a href="customer_login.php">Login</a></li>
+        <li><a href="login.php">Login</a></li>
         <li><a href="customer_register.php" class="active">Register</a></li>
       </ul>
     </nav>

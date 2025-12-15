@@ -24,14 +24,16 @@ if(isset($_POST['btnRegister'])){
     else{
         $sql = "INSERT INTO restaurant (branchaddress,email,restaurantname,`contact-num`,manager,password)
             VALUES ('$branch_address', '$email', '$restaurant_name', '$phone', '$fullname', '$password')";
-
-        mysqli_query($conn, $sql);
-
-        echo '<script>alert("Registration successful!");</script>';
+      if(mysqli_query($conn, $sql)){
+        echo '<script>alert("Registration successful!"); window.location="login.php";</script>';
+      } else {
+        echo '<script>alert("Registration failed.");history.back();</script>';
+      } 
+    
     }
 }
+         
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +42,7 @@ if(isset($_POST['btnRegister'])){
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register - Click2Eat</title>
   <link rel="stylesheet" href="styles.css">
-
+A
   <!-- Logo Placeholder -->
   <link rel="icon" href="click2eatlogo.png" type="image/png">
 </head>

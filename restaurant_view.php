@@ -96,7 +96,7 @@ mysqli_close($conn);
               Open/Close Restaurant
           </button>
         </form>
-      <p>📞 <strong>Contact:</strong> <?php echo htmlspecialchars($restaurant['contact-num']); ?></p>
+      <p>📞 <strong>Contact:</strong> <?php echo htmlspecialchars($restaurant['contactnum']); ?></p>
     </div>
   </div>
 </header>

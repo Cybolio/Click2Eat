@@ -29,8 +29,7 @@ if(isset($_POST['btnRegister'])){
                                 '$vehicle', '$address', '$plate', '$password')";
         
         mysqli_query($conn, $insertRider);
-
-        echo '<script>alert("Registration successful!");</script>';
+        echo '<script>alert("Registration successful!"); window.location="login.php";</script>';
     }
 }
 ?>
